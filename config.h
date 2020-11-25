@@ -85,25 +85,25 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "google-chrome-stable", NULL };
 
-static const char *upvol[]   = { "/home/kiteab/scripts/vol-up.sh",  NULL };
-static const char *downvol[] = { "/home/kiteab/scripts/vol-down.sh",  NULL };
-static const char *mutevol[] = { "/home/kiteab/scripts/vol-toggle.sh",  NULL };
+static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
+static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
+static const char *mutevol[] = { "/home/bzm/scripts/vol-toggle.sh",  NULL };
 
-static const char *wpcmd[]  = { "/home/kiteab/scripts/wp-change.sh", NULL };
-static const char *sktogglecmd[]  = { "/home/kiteab/scripts/sck-tog.sh", NULL };
-static const char *nautilustogcmd[]  = { "/home/kiteab/scripts/nautilus-tog.sh", NULL };
+static const char *wpcmd[]  = { "/home/bzm/scripts/wp-change.sh", NULL };
+static const char *sktogglecmd[]  = { "/home/bzm/scripts/sck-tog.sh", NULL };
+static const char *nautilustogcmd[]  = { "/home/bzm/scripts/nautilus-tog.sh", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
-static const char *setqwertycmd[]  = { "/home/kiteab/scripts/setxmodmap-qwerty.sh", NULL };
-static const char *setcolemakcmd[]  = { "/home/kiteab/scripts/setxmodmap-colemak.sh", NULL };
+static const char *setqwertycmd[]  = { "/home/bzm/scripts/setxmodmap-qwerty.sh", NULL };
+static const char *setcolemakcmd[]  = { "/home/bzm/scripts/setxmodmap-colemak.sh", NULL };
 
-static const char *suspendcmd[]  = { "/home/kiteab/scripts/suspend.sh", NULL };
+static const char *suspendcmd[]  = { "/home/bzm/scripts/suspend.sh", NULL };
 
-static const char *screenlockcmd[]  = { "/home/kiteab/scripts/screenlock.sh", NULL};
+static const char *screenlockcmd[]  = { "/home/bzm/scripts/screenlock.sh", NULL};
 
-static const char *incbacklightcmd[]  = { "/home/kiteab/scripts/inc-backlight.sh", NULL};
-static const char *decbacklightcmd[]  = { "/home/kiteab/scripts/dec-backlight.sh", NULL};
+static const char *incbacklightcmd[]  = { "/home/bzm/scripts/inc-backlight.sh", NULL};
+static const char *decbacklightcmd[]  = { "/home/bzm/scripts/dec-backlight.sh", NULL};
 
 static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 
