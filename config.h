@@ -83,7 +83,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *chromecmd[]  = { "google-chrome-stable", NULL };
 
 static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
@@ -96,9 +96,6 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
 static const char *setqwertycmd[]  = { "/home/bzm/scripts/setxmodmap-qwerty.sh", NULL };
-static const char *setcolemakcmd[]  = { "/home/bzm/scripts/setxmodmap-colemak.sh", NULL };
-
-static const char *suspendcmd[]  = { "/home/bzm/scripts/suspend.sh", NULL };
 
 static const char *screenlockcmd[]  = { "/home/bzm/scripts/screenlock.sh", NULL};
 
@@ -109,25 +106,28 @@ static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
-	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },
-	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },
-	{ MODKEY,              XK_c,                    spawn,          {.v = browsercmd } },
+	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
+	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
+	{ MODKEY,              XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
 	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
-	{ MODKEY|ShiftMask,    XK_m,                    spawn,          {.v = setcolemakcmd } },
-	{ MODKEY|ShiftMask,    XK_p,                    spawn,          {.v = suspendcmd } },
-	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },
-	{ MODKEY,              XK_f,                    spawn,          {.v = nautilustogcmd } },
-	{ MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
+	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
+   /*  { MODKEY,              XK_f,                    spawn,          {.v = nautilustogcmd } }, */
+	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
+   /*  -------------------声音----------------------------------- */
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
 	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
-	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },
+/* -------------------------------------------------------- */
+	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },	/* 切换壁纸 */
+
+   /*  -------------------亮度----------------------------------- */
 	{ MODKEY,              XK_comma,                spawn,          {.v = decbacklightcmd } },
 	{ MODKEY,              XK_period,               spawn,          {.v = incbacklightcmd } },
-	{ 0,                   XK_Print,                spawn,          {.v = screenshotcmd } },
+	
+	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏*/
 	{ MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
 	{ MODKEY,              XK_e,                    focusstack,     {.i = +1 } },
