@@ -128,30 +128,46 @@ static Key keys[] = {
 	{ MODKEY,              XK_period,               spawn,          {.v = incbacklightcmd } },
 	
 	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏*/
-	{ MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
-	{ MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
-	{ MODKEY,              XK_e,                    focusstack,     {.i = +1 } },
-	{ MODKEY,              XK_u,                    focusstack,     {.i = -1 } },
+
+	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
+	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
+	
+   /*  -------------------窗口切换----------------------------------- */
+	{ MODKEY,              XK_k,                    focusstack,     {.i = +1 } },
+	{ MODKEY,              XK_j,                    focusstack,     {.i = -1 } },
+
 	{ MODKEY,              XK_n,                    viewtoleft,     {0} },
 	{ MODKEY,              XK_i,                    viewtoright,    {0} },
 	{ MODKEY|ShiftMask,    XK_n,                    tagtoleft,      {0} },
 	{ MODKEY|ShiftMask,    XK_i,                    tagtoright,     {0} },
+
+   /*  ------------------------排列方式----------------------------- */
 	{ MODKEY|ShiftMask,    XK_h,                    incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,    XK_l,                    incnmaster,     {.i = -1 } },
-	{ MODKEY,              XK_h,                    setmfact,       {.f = -0.05} },
-	{ MODKEY,              XK_l,                    setmfact,       {.f = +0.05} },
-	{ MODKEY,              XK_k,                    hidewin,        {0} },
-	{ MODKEY|ShiftMask,    XK_k,                    restorewin,     {0} },
-	{ MODKEY,              XK_o,                    hideotherwins,  {0}},
-	{ MODKEY|ShiftMask,    XK_o,                    restoreotherwins, {0}},
-	{ MODKEY|ShiftMask,    XK_b,                    togglebar,      {0} },
-	{ MODKEY|ShiftMask,    XK_Return,               zoom,           {0} },
+
+   /*  ---------------------------改变窗口大小(T模式)-------------------------------------- */
+	{ MODKEY,              XK_Left,                 setmfact,       {.f = -0.05} },	
+	{ MODKEY,              XK_Right,                setmfact,       {.f = +0.05} },
+
+   /*  --------------------------隐藏（最小化框口）-------------------------------------------- */
+	{ MODKEY,              XK_o,                    hidewin,        {0} },		/*最小化框口*/
+	{ MODKEY|ShiftMask,    XK_o,                    restorewin,     {0} },		/*恢复最近一次隐藏的窗口*/
+	{ MODKEY,              XK_u,                    hideotherwins,  {0}},		/*隐藏除当前窗口以外的所有窗口*/
+	{ MODKEY|ShiftMask,    XK_u,                    restoreotherwins, {0}},		/*恢复所有在当前标签下的窗口*/
+
+	{ MODKEY|ShiftMask,    XK_b,                    togglebar,      {0} },		/*隐藏侧边栏*/
+	{ MODKEY|ShiftMask,    XK_Return,               zoom,           {0} },		/*将当前窗口调为主窗口*/
 	{ MODKEY,              XK_Tab,                  view,           {0} },
-	{ MODKEY|ShiftMask,    XK_q,                    killclient,     {0} },
+	{ MODKEY|ShiftMask,    XK_c,                    killclient,     {0} },		/*关闭当前窗口*/
+
+
+   /*  --------------------------设置布局模式-------------------------------------------- */
 	{ MODKEY,              XK_t,                    setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,              XK_f,                    setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,    XK_f,                    fullscreen,     {0} },
 	{ MODKEY,              XK_space,                setlayout,      {0} },
+	{ MODKEY|ShiftMask,    XK_f,                    fullscreen,     {0} },		/*全屏模式*/
+
 	{ MODKEY|ShiftMask,    XK_space,                togglefloating, {0} },
 	{ MODKEY,              XK_apostrophe,           togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,              XK_0,                    view,           {.ui = ~0 } },
