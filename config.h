@@ -84,6 +84,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[]  = { "google-chrome-stable", NULL };
+static const char *ideacmd[]  = { "intellij-idea-ultimate-edition", NULL };
 
 static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
@@ -108,10 +109,12 @@ static Key keys[] = {
 	/* modifier            key                      function        argument */
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
 	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
-	{ MODKEY,              XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
+	{ MODKEY|ControlMask,  XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
+	{ MODKEY|ControlMask,  XK_i,                    spawn,          {.v = ideacmd } },	/* 打开chrome*/
+
 	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
-   /*  { MODKEY,              XK_f,                    spawn,          {.v = nautilustogcmd } }, */
+	{ MODKEY|ControlMask,  XK_f,                    spawn,          {.v = nautilustogcmd } },	/*打开文件管理器*/
 	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
    /*  -------------------声音----------------------------------- */
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
