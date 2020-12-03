@@ -54,6 +54,7 @@ static const Rule rules[] = {
 	{ "quemu-system-i386",   NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",             NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "netease-cloud-music", NULL,       NULL,       0,            1,           -1 },
+	{ "utools",              NULL,       NULL,       0,       1,           -1 },
 };
 
 /* layout(s) */
@@ -85,6 +86,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[]  = { "google-chrome-stable", NULL };
 static const char *ideacmd[]  = { "intellij-idea-ultimate-edition", NULL };
+static const char *typoracmd[]  = { "typora", NULL };
+static const char *utoolscmd[]  = { "utools", NULL };
 
 static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
@@ -110,11 +113,14 @@ static Key keys[] = {
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
 	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
 	{ MODKEY|ControlMask,  XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
-	{ MODKEY|ControlMask,  XK_i,                    spawn,          {.v = ideacmd } },	/* 打开chrome*/
+	{ MODKEY|ControlMask,  XK_i,                    spawn,          {.v = ideacmd } },	/* 打开idea*/
+	{ MODKEY|ControlMask,  XK_t,                    spawn,          {.v = typoracmd } },	/* 打开typora*/
+	{ MODKEY|ControlMask,  XK_u,                    spawn,          {.v = utoolscmd } },	/* 打开typora*/
 
-	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
 	{ MODKEY|ControlMask,  XK_f,                    spawn,          {.v = nautilustogcmd } },	/*打开文件管理器*/
+
+	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
    /*  -------------------声音----------------------------------- */
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
