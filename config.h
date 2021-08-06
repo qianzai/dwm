@@ -84,7 +84,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *chromecmd[]  = { "google-chrome-stable", NULL };
+static const char *chromecmd[]  = { "chromium", NULL };
 static const char *ideacmd[]  = { "intellij-idea-ultimate-edition", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
 static const char *utoolscmd[]  = { "utools", NULL };
@@ -111,6 +111,9 @@ static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
+	/*--------------------------------------------------------------------------------------------------------------*/
+	                                                 /*打开软件*/
+	/*--------------------------------------------------------------------------------------------------------------*/
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
 	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
 	{ MODKEY|ControlMask,  XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
@@ -124,14 +127,16 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
-   /*  -------------------声音----------------------------------- */
+	/*--------------------------------------------------------------------------------------------------------------*/
+	                                                 /*系统设置*/
+	/*--------------------------------------------------------------------------------------------------------------*/
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
 	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
-/* -------------------------------------------------------- */
+
 	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },	/* 切换壁纸 */
 
    /*  -------------------亮度----------------------------------- */
@@ -143,24 +148,27 @@ static Key keys[] = {
 	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
 	
-   /*  -------------------窗口切换----------------------------------- */
-	{ MODKEY,              XK_k,                    focusstack,     {.i = +1 } },
+
+	/*--------------------------------------------------------------------------------------------------------------*/
+	                                                 /*窗口操作*/
+	/*--------------------------------------------------------------------------------------------------------------*/
+	{ MODKEY,              XK_k,                    focusstack,     {.i = +1 } },	/*跳转窗口*/
 	{ MODKEY,              XK_j,                    focusstack,     {.i = -1 } },
 
-	{ MODKEY,              XK_n,                    viewtoleft,     {0} },
+	{ MODKEY,              XK_n,                    viewtoleft,     {0} },	/*切换显示标签*/
 	{ MODKEY,              XK_i,                    viewtoright,    {0} },
-	{ MODKEY|ShiftMask,    XK_n,                    tagtoleft,      {0} },
+
+	{ MODKEY|ShiftMask,    XK_n,                    tagtoleft,      {0} },	/*将当前窗口移到其他标签*/
 	{ MODKEY|ShiftMask,    XK_i,                    tagtoright,     {0} },
 
-   /*  ------------------------排列方式----------------------------- */
-	{ MODKEY|ShiftMask,    XK_h,                    incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,    XK_l,                    incnmaster,     {.i = -1 } },
+	{ MODKEY,              XK_Tab,                  view,           {0} },      /*历史标签*/
 
-   /*  ---------------------------改变窗口大小(T模式)-------------------------------------- */
-	{ MODKEY,              XK_Left,                 setmfact,       {.f = -0.05} },	
+	{ MODKEY,              XK_g,                    incnmaster,     {.i = +1 } },	/*切换布局方式*/
+	{ MODKEY|ShiftMask,    XK_g,                    incnmaster,     {.i = -1 } },
+
+	{ MODKEY,              XK_Left,                 setmfact,       {.f = -0.05} },	/*修改窗口大大小*/	
 	{ MODKEY,              XK_Right,                setmfact,       {.f = +0.05} },
 
-   /*  --------------------------隐藏（最小化框口）-------------------------------------------- */
 	{ MODKEY,              XK_o,                    hidewin,        {0} },		/*最小化框口*/
 	{ MODKEY|ShiftMask,    XK_o,                    restorewin,     {0} },		/*恢复最近一次隐藏的窗口*/
 	{ MODKEY,              XK_u,                    hideotherwins,  {0}},		/*隐藏除当前窗口以外的所有窗口*/
@@ -168,8 +176,7 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,    XK_b,                    togglebar,      {0} },		/*隐藏侧边栏*/
 	{ MODKEY|ShiftMask,    XK_Return,               zoom,           {0} },		/*将当前窗口调为主窗口*/
-	{ MODKEY,              XK_Tab,                  view,           {0} },
-	{ MODKEY|ShiftMask,    XK_c,                    killclient,     {0} },		/*关闭当前窗口*/
+	{ ControlMask|ShiftMask,    XK_q,                    killclient,     {0} },		/*关闭当前窗口*/
 
 
    /*  --------------------------设置布局模式-------------------------------------------- */
