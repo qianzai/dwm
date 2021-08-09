@@ -84,7 +84,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *chromecmd[]  = { "chromium", NULL };
+static const char *chromecmd[]  = { "/home/bzm/Desktop/apps/chromium_start.sh", NULL };
 static const char *ideacmd[]  = { "intellij-idea-ultimate-edition", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
 static const char *utoolscmd[]  = { "utools", NULL };
@@ -108,6 +108,7 @@ static const char *incbacklightcmd[]  = { "/home/bzm/scripts/inc-backlight.sh", 
 static const char *decbacklightcmd[]  = { "/home/bzm/scripts/dec-backlight.sh", NULL};
 
 static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *screenshotfullcmd[] = { "flameshot", "full", "-c",NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
@@ -122,6 +123,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,  XK_u,                    spawn,          {.v = utoolscmd } },	/* 打开utools*/
 	{ MODKEY|ControlMask,  XK_m,                    spawn,          {.v = musiccmd } },	  /* 打开netease-cloud-music*/
 
+	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏(gui)*/
+	{ ControlMask,         XK_Print,                spawn,          {.v = screenshotfullcmd } },	/*截屏(全屏)*/
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
 	{ MODKEY|ControlMask,  XK_f,                    spawn,          {.v = nautilustogcmd } },	/*打开文件管理器*/
 
@@ -133,17 +136,15 @@ static Key keys[] = {
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
-	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
-	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
-	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
+	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },	/*减小声音*/
+	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },	/*开关声音*/	
+	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },	/*增加声音*/
 
 	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },	/* 切换壁纸 */
 
    /*  -------------------亮度----------------------------------- */
 	{ MODKEY,              XK_comma,                spawn,          {.v = decbacklightcmd } },
 	{ MODKEY,              XK_period,               spawn,          {.v = incbacklightcmd } },
-	
-	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏*/
 
 	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
