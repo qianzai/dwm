@@ -84,8 +84,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *chromecmd[]  = { "/home/bzm/Desktop/apps/chromium_start.sh", NULL };
-static const char *ideacmd[]  = { "intellij-idea-ultimate-edition", NULL };
+static const char *chromecmd[]  = { "google-chrome-stable", NULL };
+static const char *ideacmd[]  = { "/usr/local/bin/idea", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
 static const char *utoolscmd[]  = { "utools", NULL };
 static const char *musiccmd[]  = { "netease-cloud-music", NULL };
@@ -93,6 +93,8 @@ static const char *musiccmd[]  = { "netease-cloud-music", NULL };
 static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
 static const char *mutevol[] = { "/home/bzm/scripts/vol-toggle.sh",  NULL };
+static const char *picomcmd[] = { "/home/bzm/scripts/picom-up.sh",  NULL };
+
 
 static const char *wpcmd[]  = { "/home/bzm/scripts/wp-change.sh", NULL };
 static const char *sktogglecmd[]  = { "/home/bzm/scripts/sck-tog.sh", NULL };
@@ -145,6 +147,7 @@ static Key keys[] = {
    /*  -------------------亮度----------------------------------- */
 	{ MODKEY,              XK_comma,                spawn,          {.v = decbacklightcmd } },
 	{ MODKEY,              XK_period,               spawn,          {.v = incbacklightcmd } },
+	{ MODKEY,              XK_p,               spawn,               {.v = picomcmd } },
 
 	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
