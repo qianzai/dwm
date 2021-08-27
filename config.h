@@ -16,8 +16,11 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
+static const char *altbarclass = "Polybar";     /* Alternate bar class name */
+static const char *altbarcmd  = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=15" };
+static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=12" };
 static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=15";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -26,18 +29,12 @@ static const char col_gray4[]       = "#ffffff";
 static const char col_cyan[]        = "#37474F";
 static const char col_border[]      = "#FF75BC";
 static const unsigned int baralpha = 0xd0;
-// static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_border  },
 	[SchemeHid]  = { col_cyan,  col_gray1, col_border  },
 };
-// static const unsigned int alphas[][3]      = {
-	// [>               fg      bg        border     <]
-	// [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	// [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
-// };
 
 /* tagging */
 static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
@@ -48,13 +45,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                 instance    title       tags mask     isfloating   monitor */
-	{ "Android Emulator",    NULL,       NULL,       0,            1,           -1 },
-	{ "Emulator",            NULL,       NULL,       0,            1,           -1 },
-	{ "quemu-system-i386",   NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",             NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "netease-cloud-music", NULL,       NULL,       0,            1,           -1 },
-	{ "uTools",              NULL,       NULL,       0,            1,           -1 },
+	/* class                    instance    title       tags mask     isfloating   monitor */
+	// { "firefox",                NULL,       NULL,       1 << 8,       0,           -1 },
+	// { "chrome",                 NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "idea",                   NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "netease-cloud-music",    NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "wechat.exe",             NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "uTools",                 NULL,       NULL,       0,            1,           -1 },
+	{ "icalingua",              NULL,       NULL,       1 << 6,       1,           -1 },
+	{ "Wine",                   NULL,       NULL,       1 << 5,       1,           -1 },
+	{ "fcitx",                  NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -84,7 +84,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *trayercmd[]  = { "/home/bzm/scripts/trayer-change.sh", NULL };
+static const char *conkycmd[]  = { "/home/bzm/scripts/conky-change.sh", NULL };
+static const char *openwechatcmd[]  = { "/home/bzm/scripts/open-wechat.sh", NULL };
+static const char *clashcmd[]  = { "/home/bzm/scripts/clash-change.sh", NULL };
 static const char *chromecmd[]  = { "google-chrome-stable","--force-device-scale-factor=1.15",NULL };
+static const char *gitkrakencmd[]  = { "gitkraken","--force-device-scale-factor=1.15",NULL };
 static const char *ideacmd[]  = { "/usr/local/bin/idea", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
 static const char *utoolscmd[]  = { "utools", NULL };
@@ -94,9 +99,11 @@ static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
 static const char *mutevol[] = { "/home/bzm/scripts/vol-toggle.sh",  NULL };
 static const char *picomcmd[] = { "/home/bzm/scripts/picom-up.sh",  NULL };
+static const char *fcitxcmd[] = { "/home/bzm/scripts/fcitx-up.sh",  NULL };
 
 
 static const char *wpcmd[]  = { "/home/bzm/scripts/wp-change.sh", NULL };
+static const char *lockcmd[]  = { "/home/bzm/scripts/lock_screen.sh", NULL };
 static const char *sktogglecmd[]  = { "/home/bzm/scripts/sck-tog.sh", NULL };
 static const char *nautilustogcmd[]  = { "/home/bzm/scripts/nautilus-tog.sh", NULL };
 static const char scratchpadname[] = "scratchpad";
@@ -119,16 +126,22 @@ static Key keys[] = {
 	/*--------------------------------------------------------------------------------------------------------------*/
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
 	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
+	{ MODKEY,              XK_w,                    spawn,          {.v = trayercmd } },		/*打开托盘*/
+	{ MODKEY,              XK_c,                    spawn,          {.v = conkycmd } },		/* 打开系统监控 */
+
 	{ MODKEY|ControlMask,  XK_c,                    spawn,          {.v = chromecmd } },	/* 打开chrome*/
+	{ MODKEY|ControlMask,  XK_k,                    spawn,          {.v = gitkrakencmd } },	/* 打开chrome*/
 	{ MODKEY|ControlMask,  XK_i,                    spawn,          {.v = ideacmd } },	/* 打开idea*/
 	{ MODKEY|ControlMask,  XK_t,                    spawn,          {.v = typoracmd } },	/* 打开typora*/
 	{ MODKEY|ControlMask,  XK_u,                    spawn,          {.v = utoolscmd } },	/* 打开utools*/
 	{ MODKEY|ControlMask,  XK_m,                    spawn,          {.v = musiccmd } },	  /* 打开netease-cloud-music*/
-
+	{ MODKEY|ControlMask,  XK_w,                    spawn,          {.v = openwechatcmd } },	  /* 打开微信*/
+	{ MODKEY|ControlMask,  XK_p,                    spawn,          {.v = clashcmd } },	  /*开关clash代理*/
 	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏(gui)*/
 	{ ControlMask,         XK_Print,                spawn,          {.v = screenshotfullcmd } },	/*截屏(全屏)*/
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
 	{ MODKEY|ControlMask,  XK_f,                    spawn,          {.v = nautilustogcmd } },	/*打开文件管理器*/
+	{ MODKEY|ControlMask,  XK_l,                    spawn,          {.v = fcitxcmd } },	/*输入法*/
 
 	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
@@ -139,19 +152,20 @@ static Key keys[] = {
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },	/*减小声音*/
-	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },	/*开关声音*/	
+	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },	/*开关声音*/
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },	/*增加声音*/
 
 	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },	/* 切换壁纸 */
+	{ MODKEY,              XK_l,                    spawn,          {.v = lockcmd } },	/* 锁屏 */
 
    /*  -------------------亮度----------------------------------- */
-	{ MODKEY,              XK_comma,                spawn,          {.v = decbacklightcmd } },
-	{ MODKEY,              XK_period,               spawn,          {.v = incbacklightcmd } },
+	{ MODKEY,              XK_comma,/*,*/                spawn,          {.v = decbacklightcmd } },
+	{ MODKEY,              XK_period,/*.*/              spawn,          {.v = incbacklightcmd } },
 	{ MODKEY,              XK_p,               spawn,               {.v = picomcmd } },
 
 	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
-	
+
 
 	/*--------------------------------------------------------------------------------------------------------------*/
 	                                                 /*窗口操作*/
@@ -170,7 +184,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_g,                    incnmaster,     {.i = +1 } },	/*切换布局方式*/
 	{ MODKEY|ShiftMask,    XK_g,                    incnmaster,     {.i = -1 } },
 
-	{ MODKEY,              XK_Left,                 setmfact,       {.f = -0.05} },	/*修改窗口大大小*/	
+	{ MODKEY,              XK_Left,                 setmfact,       {.f = -0.05} },	/*修改窗口大大小*/
 	{ MODKEY,              XK_Right,                setmfact,       {.f = +0.05} },
 
 	{ MODKEY,              XK_o,                    hidewin,        {0} },		/*最小化框口*/
