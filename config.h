@@ -72,10 +72,10 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -122,7 +122,7 @@ static const char *screenshotfullcmd[] = { "flameshot", "full", "-c",NULL };
 static Key keys[] = {
 	/* modifier            key                      function        argument */
 	/*--------------------------------------------------------------------------------------------------------------*/
-	                                                 /*打开软件*/
+	/*打开软件*/
 	/*--------------------------------------------------------------------------------------------------------------*/
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },		/*打开dmenu */
 	{ MODKEY,              XK_Return,               spawn,          {.v = termcmd } },		/* 打开终端 */
@@ -146,7 +146,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_w,                    spawn,          {.v = setqwertycmd } },
 	// { MODKEY|ControlMask,  XK_l,                    spawn,          {.v = screenlockcmd } },
 	/*--------------------------------------------------------------------------------------------------------------*/
-	                                                 /*系统设置*/
+	/*系统设置*/
 	/*--------------------------------------------------------------------------------------------------------------*/
 	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
@@ -158,17 +158,16 @@ static Key keys[] = {
 	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },	/* 切换壁纸 */
 	{ MODKEY,              XK_l,                    spawn,          {.v = lockcmd } },	/* 锁屏 */
 
-   /*  -------------------亮度----------------------------------- */
-	{ MODKEY,              XK_comma,/*,*/                spawn,          {.v = decbacklightcmd } },
-	{ MODKEY,              XK_period,/*.*/              spawn,          {.v = incbacklightcmd } },
-	{ MODKEY,              XK_p,               spawn,               {.v = picomcmd } },
+	{ MODKEY,              XK_comma,/*,*/      		spawn,   		{.v = decbacklightcmd } }, /*降低亮度*/
+	{ MODKEY,              XK_period,/*.*/     		spawn,   		{.v = incbacklightcmd } },	/*增加亮度*/
+	{ MODKEY,              XK_p,               		spawn,   		{.v = picomcmd } },
 
 	// { MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	// { MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
 
 
 	/*--------------------------------------------------------------------------------------------------------------*/
-	                                                 /*窗口操作*/
+	/*窗口操作*/
 	/*--------------------------------------------------------------------------------------------------------------*/
 	{ MODKEY,              XK_k,                    focusstack,     {.i = +1 } },	/*跳转窗口*/
 	{ MODKEY,              XK_j,                    focusstack,     {.i = -1 } },
@@ -197,7 +196,7 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,    XK_q,                    killclient,     {0} },		/*关闭当前窗口*/
 
 
-   /*  --------------------------设置布局模式-------------------------------------------- */
+	/*  --------------------------设置布局模式-------------------------------------------- */
 	{ MODKEY,              XK_t,                    setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,              XK_f,                    setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[2]} },
@@ -208,19 +207,19 @@ static Key keys[] = {
 	{ MODKEY,              XK_apostrophe,           togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,              XK_0,                    view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,    XK_0,                    tag,            {.ui = ~0 } },
-//	{ MODKEY,              XK_comma,                focusmon,       {.i = -1 } },
-//	{ MODKEY,              XK_period,               focusmon,       {.i = +1 } },
-//	{ MODKEY|ShiftMask,    XK_comma,                tagmon,         {.i = -1 } },
-//	{ MODKEY|ShiftMask,    XK_period,               tagmon,         {.i = +1 } },
-	TAGKEYS(               XK_1,                      0)
-	TAGKEYS(               XK_2,                      1)
-	TAGKEYS(               XK_3,                      2)
-	TAGKEYS(               XK_4,                      3)
-	TAGKEYS(               XK_5,                      4)
-	TAGKEYS(               XK_6,                      5)
-	TAGKEYS(               XK_7,                      6)
-	TAGKEYS(               XK_8,                      7)
-	TAGKEYS(               XK_9,                      8)
+	//	{ MODKEY,              XK_comma,                focusmon,       {.i = -1 } },
+	//	{ MODKEY,              XK_period,               focusmon,       {.i = +1 } },
+	//	{ MODKEY|ShiftMask,    XK_comma,                tagmon,         {.i = -1 } },
+	//	{ MODKEY|ShiftMask,    XK_period,               tagmon,         {.i = +1 } },
+	 	TAGKEYS(               XK_1,                      0)
+	 	TAGKEYS(               XK_2,                      1)
+	 	TAGKEYS(               XK_3,                      2)
+	 	TAGKEYS(               XK_4,                      3)
+	 	TAGKEYS(               XK_5,                      4)
+	 	TAGKEYS(               XK_6,                      5)
+	 	TAGKEYS(               XK_7,                      6)
+	 	TAGKEYS(               XK_8,                      7)
+	 	TAGKEYS(               XK_9,                      8)
 	{ MODKEY|ControlMask,  XK_q,      quit,           {0} },
 };
 
