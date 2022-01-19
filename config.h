@@ -22,12 +22,12 @@ static const char *altbarcmd  = "$HOME/bar.sh"; /* Alternate bar launch command 
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=12" };
 static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=15";
-static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#2E3440";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#ECEFF4";
 static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#37474F";
-static const char col_border[]      = "#FF75BC";
+static const char col_cyan[]        = "#3f5764";
+static const char col_border[]      = "#ff5665";
 static const unsigned int baralpha = 0xd0;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
