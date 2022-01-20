@@ -48,13 +48,14 @@ static const Rule rules[] = {
 	/* class                    instance    title       tags mask     isfloating   monitor */
 	// { "firefox",                NULL,       NULL,       1 << 8,       0,           -1 },
 	// { "chrome",                 NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "uTools",                 NULL,       NULL,       0,            1,           -1 },
+	{ "fcitx",                  NULL,       NULL,       0,            1,           -1 },
 	{ "idea",                   NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "netease-cloud-music",    NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "wechat.exe",             NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "uTools",                 NULL,       NULL,       0,            1,           -1 },
-	{ "icalingua",              NULL,       NULL,       1 << 6,       1,           -1 },
-	{ "Wine",                   NULL,       NULL,       1 << 5,       1,           -1 },
-	{ "fcitx",                  NULL,       NULL,       0,            1,           -1 },
+	// { "icalingua",              NULL,       NULL,       1 << 6,       0,           -1 },
+	// { "wechat.exe",             NULL,       NULL,       1 << 6,       0,           -1 },
+	// { "tim.exe",                NULL,       NULL,       1 << 6,       0,           -1 },
+	// { "Wine",                   NULL,       NULL,       1 << 6,       0,           -1 },
 };
 
 /* layout(s) */
@@ -87,13 +88,13 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *trayercmd[]  = { "/home/bzm/scripts/trayer-change.sh", NULL };
 static const char *conkycmd[]  = { "/home/bzm/scripts/conky-change.sh", NULL };
 static const char *openwechatcmd[]  = { "/home/bzm/scripts/open-wechat.sh", NULL };
-static const char *clashcmd[]  = { "/home/bzm/scripts/clash-change.sh", NULL };
 static const char *chromecmd[]  = { "google-chrome-stable","--force-device-scale-factor=1.15",NULL };
 static const char *gitkrakencmd[]  = { "gitkraken","--force-device-scale-factor=1.15",NULL };
 static const char *ideacmd[]  = { "/usr/local/bin/idea", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
 static const char *utoolscmd[]  = { "utools", NULL };
 static const char *musiccmd[]  = { "netease-cloud-music", NULL };
+static const char *timcmd[]  = { "/opt/deepinwine/tools/sendkeys.sh", "z" , "tim" , "4" };
 
 static const char *upvol[]   = { "/home/bzm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/bzm/scripts/vol-down.sh",  NULL };
@@ -134,9 +135,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,  XK_i,                    spawn,          {.v = ideacmd } },	/* 打开idea*/
 	{ MODKEY|ControlMask,  XK_t,                    spawn,          {.v = typoracmd } },	/* 打开typora*/
 	{ MODKEY|ControlMask,  XK_u,                    spawn,          {.v = utoolscmd } },	/* 打开utools*/
-	{ MODKEY|ControlMask,  XK_m,                    spawn,          {.v = musiccmd } },	  /* 打开netease-cloud-music*/
+	// { MODKEY|ControlMask,  XK_m,                    spawn,          {.v = musiccmd } },	  [> 打开netease-cloud-music<]
+	{ MODKEY|ControlMask,  XK_m,                    spawn,          {.v = timcmd } },	  /* 打开tim*/
 	{ MODKEY|ControlMask,  XK_w,                    spawn,          {.v = openwechatcmd } },	  /* 打开微信*/
-	{ MODKEY|ControlMask,  XK_p,                    spawn,          {.v = clashcmd } },	  /*开关clash代理*/
 	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏(gui)*/
 	{ ControlMask,         XK_Print,                spawn,          {.v = screenshotfullcmd } },	/*截屏(全屏)*/
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
