@@ -66,8 +66,8 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "Tile",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -206,8 +206,8 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,    XK_space,                togglefloating, {0} },
 	{ MODKEY,              XK_apostrophe,           togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,              XK_0,                    view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,    XK_0,                    tag,            {.ui = ~0 } },
+	// { MODKEY,              XK_0,                    view,           {.ui = ~0 } },
+	// { MODKEY|ShiftMask,    XK_0,                    tag,            {.ui = ~0 } },
 	//	{ MODKEY,              XK_comma,                focusmon,       {.i = -1 } },
 	//	{ MODKEY,              XK_period,               focusmon,       {.i = +1 } },
 	//	{ MODKEY|ShiftMask,    XK_comma,                tagmon,         {.i = -1 } },
