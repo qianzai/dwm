@@ -88,7 +88,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *trayercmd[]  = { "/home/bzm/scripts/trayer-change.sh", NULL };
 static const char *conkycmd[]  = { "/home/bzm/scripts/conky-change.sh", NULL };
 static const char *openwechatcmd[]  = { "/home/bzm/scripts/open-wechat.sh", NULL };
-static const char *chromecmd[]  = { "google-chrome-stable","--force-device-scale-factor=1.15",NULL };
+static const char *chromecmd[]  = { "/home/bzm/scripts/open-chrome.sh",NULL };
 static const char *gitkrakencmd[]  = { "gitkraken","--force-device-scale-factor=1.15",NULL };
 static const char *ideacmd[]  = { "/usr/local/bin/idea", NULL };
 static const char *typoracmd[]  = { "typora", NULL };
@@ -199,8 +199,8 @@ static Key keys[] = {
 
 	/*  --------------------------设置布局模式-------------------------------------------- */
 	{ MODKEY,              XK_t,                    setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,              XK_f,                    setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,              XK_m,                    setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,              XK_f,                    setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,              XK_space,                setlayout,      {0} },
 	{ MODKEY|ShiftMask,    XK_f,                    fullscreen,     {0} },		/*全屏模式*/
 
@@ -221,7 +221,7 @@ static Key keys[] = {
 	 	TAGKEYS(               XK_7,                      6)
 	 	TAGKEYS(               XK_8,                      7)
 	 	TAGKEYS(               XK_9,                      8)
-	{ MODKEY|ControlMask,  XK_q,      quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask,  XK_q,      quit,           {0} },
 };
 
 /* button definitions */
