@@ -3,7 +3,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -26,8 +26,8 @@ static const char col_gray1[]       = "#2E3440";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#ECEFF4";
 static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#3f5764";
-static const char col_border[]      = "#ff5665";
+static const char col_cyan[]        = "#495263";
+static const char col_border[]      = "#eb172a";
 static const unsigned int baralpha = 0xd0;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -38,7 +38,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 // static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
-static const char *tags[] = { "₁", "₂", "₃", "₄", "💕₅", "🎵₆", "💬₇", "₈", "₉" };
+static const char *tags[] = { "₁", "₂", "₃", "₄", "💕₅", "₆", "💬₇", "₈", "₉" };
 // static const char *tags[] = { "\uf120", "\uf7ae", "\uf121", "\uf04b", "\ue62e", "\uf251", "\ue727", "\uf537", "\uf684" };
 
 static const Rule rules[] = {
@@ -53,6 +53,7 @@ static const Rule rules[] = {
 	{ "fcitx",                  NULL,       NULL,       0,            1,           -1 },
 	{ "idea",                   NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "netease-cloud-music",    NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "wemeetapp.exe",          NULL,       NULL,       1 << 6,       1,           -1 },
 	// { "icalingua",              NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "wechat.exe",             NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "tim.exe",                NULL,       NULL,       1 << 6,       0,           -1 },
