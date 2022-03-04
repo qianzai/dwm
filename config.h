@@ -50,10 +50,12 @@ static const Rule rules[] = {
 	// { "firefox",                NULL,       NULL,       1 << 8,       0,           -1 },
 	// { "chrome",                 NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "uTools",                 NULL,       NULL,       0,            1,           -1 },
+	{ "HevoNext.B2CApp",                 NULL,       NULL,       0,            1,           -1 },
 	{ "fcitx",                  NULL,       NULL,       0,            1,           -1 },
 	{ "idea",                   NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "netease-cloud-music",    NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "wemeetapp.exe",          NULL,       NULL,       1 << 6,       1,           -1 },
+	{ "Typora",                 NULL,       NULL,       1 << 3,       0,           -1 },
 	// { "icalingua",              NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "wechat.exe",             NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "tim.exe",                NULL,       NULL,       1 << 6,       0,           -1 },
@@ -139,7 +141,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,  XK_u,                    spawn,          {.v = utoolscmd } },	/* 打开utools*/
 	// { MODKEY|ControlMask,  XK_m,                    spawn,          {.v = musiccmd } },	  [> 打开netease-cloud-music<]
 	{ MODKEY|ControlMask,  XK_m,                    spawn,          {.v = timcmd } },	  /* 打开tim*/
-	{ MODKEY|ControlMask,  XK_w,                    spawn,          {.v = openwechatcmd } },	  /* 打开微信*/
+	{ MODKEY|ControlMask,  XK_n,                    spawn,          {.v = openwechatcmd } },	  /* 打开微信*/
 	{ MODKEY,              XK_Print,                spawn,          {.v = screenshotcmd } },	/*截屏(gui)*/
 	{ ControlMask,         XK_Print,                spawn,          {.v = screenshotfullcmd } },	/*截屏(全屏)*/
 	{ MODKEY|ControlMask,  XK_s,                    spawn,          {.v = sktogglecmd } },	/* 键盘回显 */
