@@ -54,6 +54,7 @@ static const Rule rules[] = {
 	{ "idea",                   NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "netease-cloud-music",    NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "wemeetapp.exe",          NULL,       NULL,       1 << 6,       1,           -1 },
+	{ "Typora",                 NULL,       NULL,       1 << 3,       0,           -1 },
 	// { "icalingua",              NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "wechat.exe",             NULL,       NULL,       1 << 6,       0,           -1 },
 	// { "tim.exe",                NULL,       NULL,       1 << 6,       0,           -1 },
